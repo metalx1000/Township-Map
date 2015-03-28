@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Collier County Township and Range Lookup</title>
+    <style>
+      html, body{
+        height: 100%;
+        margin: 0px;
+        padding: 0px;
+        font-size: 200%;
+      }
+      #output{
+        font-size: 200%;
+      }
+      input{
+        font-size: 100%;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script src="js/jquery.js"></script>
+    <script src="trs.js"></script>
+    <script>
+var geocoder = new google.maps.Geocoder();
+var latlng;
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status == google.maps.GeocoderStatus.OK) {
+      latlng = results[0].geometry.location;
+      var x = latlng.k;
+      var y = latlng.D;
+      console.log(x + "," + y);
+      for (var i = 0;i<trs.length;i++){
+        var lat1 = trs[i].lat1;
+        var lng1 = trs[i].long1;
+        var lat2 = trs[i].lat2;
+        var lng2 = trs[i].long2;
+        if(x < lat1 && x > lat2 && y > lng1 && y < lng2){
+//        console.log(y +","+ lng1 +","+ y +","+ lng2);
+          //console.log(trs[i].trs);
+          $("#output").html(trs[i].trs);
+          
+        }
+      }
+    } else {
+      alert('TRS not found: ' + status);
+    }
+  });
+}
+
+  $(document).ready(function(){
+    $("#address").keypress(function( event ) {
+      if ( event.which == 13 ) {
+        event.preventDefault();
+        codeAddress();
+      }
+    });
+  });
+
+    </script>
+  </head>
+  <body>
+    <div id="panel">
+      <input id="address" type="text" placeholder="Enter Address">
+      <input type="button" value="Get TRS" onclick="codeAddress()">
+      <div id="output"></div>
+    </div>
+  </body>
+</html>
