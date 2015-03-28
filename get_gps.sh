@@ -16,6 +16,6 @@ do
     lat2="$(echo "$nwX - $X * $a"|bc -l)"
     long2="$(echo "$nwY + $Y * $z"|bc -l)"
 
-    echo "make_box($lat1,$long1,$lat2,$long2)"
+    echo "{'trs':'$l x $i','lat1':'$lat1','long1':'$long1','lat2':'$lat2','long2':'$long2'})"
   done
 done
