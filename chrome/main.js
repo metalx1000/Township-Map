@@ -28,18 +28,27 @@ $(document).ready(function(){
     });
   });
 
-function check_trs(lat,lng){
-  console.log("checking trs...");
-  var trs_url = "https://raw.githubusercontent.com/metalx1000/Township-Map/master/trs.json";
-  //var trs_url = "https://maps.google.com/maps/api/geocode/json?address=686%20101st%20ave%20n%2034109&sensor=false";
-  $.getJSON(trs_url)
-  .done(function(data){
-    console.log(data);
-    for(var i = 0;i<data.length;i++){
-      console.log(data[i].geometry);
-    }
-  });
-}
+  function check_trs(lat,lng){
+    console.log("checking trs...");
+    var trs_url = "https://raw.githubusercontent.com/metalx1000/Township-Map/master/trs.json";
+    $.getJSON(trs_url, function(data){
+      $.each(data, function(key, value){
+          var lat1 = value.lat1;
+          var lng1 = value.long1;
+          var lat2 = value.lat2;
+          var lng2 = value.long2;
+          var trs = value.trs.split("-");
+          var tract = trs[0]+trs[1]+"."+trs[2];
+
+        if(lat < lat1 && lat > lat2 && lng > lng1 && lng < lng2){
+            //console.log(lat +":"+ lng+":"+ lat1+":"+ lng1+":"+ lat2+":"+ lng2+":"+ trs);
+          $("#CensusTract").val(tract);
+          console.log(tract);  
+        }
+      });
+
+    });
+  }
 
 });
 
