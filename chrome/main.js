@@ -35,7 +35,7 @@ function check_trs(lat,lng){
   var trs_url = "https://raw.githubusercontent.com/metalx1000/Township-Map/master/trs.json";
   //var trs_url = "https://maps.google.com/maps/api/geocode/json?address=686%20101st%20ave%20n%2034109&sensor=false";
   $.getJSON(trs_url, function(data){
-    console.log(data);
+    console.log("data");
     for(var i = 0;i<data.length;i++){
       console.log(data[i].lat1);
     }
