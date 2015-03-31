@@ -5,7 +5,6 @@ s.onload = function() {
       this.parentNode.removeChild(this);
 };
 (document.head||document.documentElement).appendChild(s);
-
 $(document).ready(function(){
   console.log("Script Running");
  
@@ -28,16 +27,19 @@ $(document).ready(function(){
       check_trs(lat,lng);
     });
   });
-});
 
 function check_trs(lat,lng){
   console.log("checking trs...");
   var trs_url = "https://raw.githubusercontent.com/metalx1000/Township-Map/master/trs.json";
   //var trs_url = "https://maps.google.com/maps/api/geocode/json?address=686%20101st%20ave%20n%2034109&sensor=false";
-  $.getJSON(trs_url, function(data){
-    console.log("data");
+  $.getJSON(trs_url)
+  .done(function(data){
+    console.log(data);
     for(var i = 0;i<data.length;i++){
-      console.log(data[i].lat1);
+      console.log(data[i].geometry);
     }
   });
 }
+
+});
+
