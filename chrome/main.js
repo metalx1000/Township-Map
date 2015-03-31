@@ -37,7 +37,7 @@ function check_trs(lat,lng){
   $.getJSON(trs_url, function(data){
     console.log(data);
     for(var i = 0;i<data.length;i++){
-      console.log(data[i].trs);
+      console.log(data[i].lat1);
     }
   });
 }
