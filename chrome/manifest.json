@@ -1,7 +1,7 @@
 {
    "content_scripts": [ {
       "js": [ "jquery-1.9.1.min.js", "main.js" ],
-      "matches": [ "https://bridge.colliergov.net/*", "https://raw.githubusercontent.com/metalx1000/Township-Map/master/trs.js"  ]
+      "matches": [ "https://bridge.colliergov.net/*" ]
    } ],
    "description": "Fire Bridge Helper",
    "icons": {
@@ -11,7 +11,10 @@
    },
    "manifest_version": 2,
    "name": "Fire Bridge Helper",
-   "permissions": [ "http://bridge.colliergov.net/*" ],
+   "permissions": [ 
+      "http://bridge.colliergov.net/*",
+      "tabs", "https://raw.githubusercontent.com/*"
+   ],
    "version": "1",
    "web_accessible_resources": [ "html_code.js", "https://raw.githubusercontent.com/metalx1000/Township-Map/master/trs.js" ]
 }
